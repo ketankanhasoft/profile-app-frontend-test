@@ -7,16 +7,16 @@ import {
   DeleteFilled
 } from '@ant-design/icons';
 import DeleteUser from './deleteUser';
-import AddUpdateUser from './addUpdateUser';
+import AddUser from './addUser';
 
 const UserList = () => {
   const history = useHistory();
   const [allProfiles, setAllProfiles] = useState([]);
-  const [addUpdateModal, setAddUpdateModal] = useState(false);
+  const [addModal, setAddModal] = useState(false);
   const [deleteProfile, setDeleteProfile] = useState("");
   
   const showModal = () => {
-    setAddUpdateModal(true);
+    setAddModal(true);
   };
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const UserList = () => {
   const getProfileList = () => {
     const profiles = localStorage.getItem("profileData") ? JSON.parse(localStorage.getItem("profileData")) : [];
     setAllProfiles(profiles);
-    setAddUpdateModal(false);
+    setAddModal(false);
     setDeleteProfile("");
   };
 
@@ -51,26 +51,6 @@ const UserList = () => {
       dataIndex: 'tagline',
       key: 'tagline',
     },
-    // {
-    //   title: 'Tags',
-    //   key: 'tags',
-    //   dataIndex: 'tags',
-    //   render: tags => (
-    //     <>
-    //       {tags.map(tag => {
-    //         let color = tag.length > 5 ? 'geekblue' : 'green';
-    //         if (tag === 'loser') {
-    //           color = 'volcano';
-    //         }
-    //         return (
-    //           <Tag color={color} key={tag}>
-    //             {tag.toUpperCase()}
-    //           </Tag>
-    //         );
-    //       })}
-    //     </>
-    //   ),
-    // },
     {
       title: 'Action',
       key: 'action',
@@ -90,8 +70,8 @@ const UserList = () => {
         Add Profile
       </Button>
       <Table columns={columns} dataSource={allProfiles} />
-      {addUpdateModal &&
-        <AddUpdateUser addUpdateModal={addUpdateModal} onCancel={() => setAddUpdateModal(false)} getProfileList={getProfileList}/>
+      {addModal &&
+        <AddUser addModal={addModal} onCancel={() => setAddModal(false)} getProfileList={getProfileList}/>
       }
       {deleteProfile &&
         <DeleteUser email={deleteProfile} onCancel={() => setDeleteProfile("")} getProfileList={getProfileList} />

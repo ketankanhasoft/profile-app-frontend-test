@@ -46,10 +46,8 @@ const ViewProfile = (props) => {
                 <span>{obj.company}</span> <br/>
                 <Text type="success">Role: </Text>
                 <span>{obj.role}</span> <br/>
-                <Text type="success">Start date: </Text>
-                <span>{obj.start_date}</span> <br/>
-                <Text type="success">End date: </Text>
-                <span>{obj.end_date}</span> <br/>
+                <Text type="success">Date: </Text>
+                <span>{obj.start_date} - {obj.current_job ? 'Present':obj.end_date }</span> <br/>
                 <Text type="success">Description: </Text>
                 <span>{obj.description}</span>
                 <hr />

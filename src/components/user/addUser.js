@@ -5,12 +5,12 @@ import {
 } from 'antd'; 
 import ProfileForm from './profileForm';
 
-const AddUpdateUser = (props) => {
-  const { addUpdateModal, onOk, onCancel, profileKey, getProfileList } = props;
+const AddUser = (props) => {
+  const { addModal, onOk, onCancel, profileKey, getProfileList } = props;
   return (
     <Modal
       title="Add User"
-      visible={addUpdateModal}
+      visible={addModal}
       onOk={onOk}
       onCancel={onCancel}
       footer={[
@@ -23,4 +23,4 @@ const AddUpdateUser = (props) => {
     </Modal>
   )
 }
-export default AddUpdateUser;
+export default AddUser;

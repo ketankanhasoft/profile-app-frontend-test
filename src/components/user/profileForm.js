@@ -3,7 +3,8 @@ import { useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 import {
   Button,
-  notification 
+  notification,
+  Checkbox 
 } from 'antd';
 import {
   Form,
@@ -23,6 +24,7 @@ const ProfileForm = (props) => {
     start_date: '',
     end_date: '',
     description: '',
+    current_job: false
   }
   const [initialValues, setInitialValues] = useState({
     firstName: '',
@@ -110,6 +112,13 @@ const ProfileForm = (props) => {
     setExperience(tempArray);
   }
 
+  const onChangeCheckBox = (e, key, obj)=>{
+    let tempExp = experience
+    obj.current_job = e.target.checked    
+    tempExp[key] = obj
+    setExperience(JSON.parse(JSON.stringify(tempExp)));
+  }
+
   const listExperiences = () => {
     return experience.map((obj, index) => {
       return (
@@ -125,6 +134,7 @@ const ProfileForm = (props) => {
           <TextArea showCount maxLength={300} name={`experience[${index}].description`}
             placeholder='Description' className='experience-item' />
           <span className='error-message'><ErrorMessage name={`experience[${index}].description`} /></span>
+          <Input type="checkbox" name={`experience[${index}].current_job`} placeholder='Current job' className='experience-item' checked={experience[index].current_job?true:false} onChange={(e, index)=>onChangeCheckBox(e, index, obj)} /> Current job
           <br></br>
         </div>
       )
